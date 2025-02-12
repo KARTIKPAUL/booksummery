@@ -28,7 +28,7 @@ const Footer = () => {
               Explore
             </h3>
             <ul className="space-y-3">
-              {["Home", "Genres", "About", "Contact"].map((link) => (
+              {["Genres", "About", "Contact"].map((link) => (
                 <li key={link}>
                   <a
                     href={`/${link.toLowerCase()}`}
@@ -47,7 +47,7 @@ const Footer = () => {
               Useful Links
             </h3>
             <ul className="space-y-3">
-              {["Privacy Policy", "Terms of Service", "FAQ"].map((link) => (
+              {["privacypolicy", "termsandconditions", "faqs"].map((link) => (
                 <li key={link}>
                   <a
                     href={`/${link.toLowerCase().replace(/ /g, "-")}`}

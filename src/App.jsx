@@ -4,6 +4,9 @@ import Home from './Pages/Home';
 import Genres from './Pages/Genres';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
+import PrivacyPolicy from './Pages/PrivacyPolicy';
+import TermsConditions from './Pages/TermsAndConditions';
+import FAQ from './Pages/Faqs';
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
         <Route path="genres" element={<Genres />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="termsandconditions" element={<TermsConditions />} />
+        <Route path="faqs" element={<FAQ />} />
       </Route>
     </Routes>
   );

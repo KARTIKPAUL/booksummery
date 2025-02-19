@@ -1,0 +1,53 @@
+ @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float-delayed 6s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  /* Custom carousel peeking effect */
+.carousel-container {
+  padding: 0 60px !important;
+  overflow: visible !important;
+}
+
+.carousel-slide {
+  padding: 0 20px;
+  transition: transform 0.3s ease;
+}
+
+.carousel-slide:not(.active) {
+  transform: scale(0.9);
+  opacity: 0.6;
+} 

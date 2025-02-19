@@ -4,9 +4,14 @@ import navLogo from "../assets/img/navLogo.png";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isMobileCategoriesOpen, setIsMobileCategoriesOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setIsMobileCategoriesOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +22,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`bg-white sticky top-0 z-50 transition-all duration-300 ${scrolled ? "shadow-xl" : "shadow-md"}`}>
+    <>
+    <header className={`bg-black sticky top-0 z-50 transition-all duration-300 ${scrolled ? "shadow-xl" : "shadow-md"}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo with hover effect */}
+          {/* Logo */}
           <div className="flex-shrink-0">
             <img
               src={navLogo}
@@ -33,35 +39,60 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <a
               href="/"
-              className="text-gray-700 hover:text-blue-600 transition-colors text-lg font-medium relative group"
+              className="text-white hover:text-blue-600 transition-colors text-lg font-medium relative group"
             >
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
             </a>
-            <a
-              href="/genres"
-              className="text-gray-700 hover:text-blue-600 transition-colors text-lg font-medium relative group"
+            
+            {/* Categories Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsCategoriesOpen(true)}
+              onMouseLeave={() => setIsCategoriesOpen(false)}
             >
-              Genres
-              <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
-            </a>
+              <button className="text-white hover:text-blue-600 transition-colors text-lg font-medium relative group">
+                Categories
+                <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
+              </button>
+              {isCategoriesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2">
+                  <a href="/science" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Science</a>
+                  <a href="/fiction" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Fiction</a>
+                  <a href="/history" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">History</a>
+                  <a href="/comics" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Comics</a>
+                  <a href="/biography" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Biography</a>
+                  <a href="/technology" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Technology</a>
+                </div>
+              )}
+            </div>
+
             <a
               href="/about"
-              className="text-gray-700 hover:text-blue-600 transition-colors text-lg font-medium relative group"
+              className="text-white hover:text-blue-600 transition-colors text-lg font-medium relative group"
             >
               About
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
             </a>
             <a
+              href="/genres"
+              className="text-white hover:text-blue-600 transition-colors text-lg font-medium relative group"
+            >
+              Genres
+              <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
+            </a>
+            <a
               href="/contact"
-              className="text-gray-700 hover:text-blue-600 transition-colors text-lg font-medium relative group"
+              className="text-white hover:text-blue-600 transition-colors text-lg font-medium relative group"
             >
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-1 bg-blue-600 transition-all group-hover:w-full"></span>
             </a>
           </nav>
 
-          {/* CTA Button with animation */}
+          
+
+          {/* CTA Button */}
           <div className="hidden md:block">
             <a
               href="/subscribe"
@@ -70,6 +101,10 @@ const Header = () => {
               Subscribe Now
             </a>
           </div>
+
+          
+          
+          
 
           {/* Mobile Menu Button */}
           <button
@@ -119,19 +154,41 @@ const Header = () => {
             >
               Home
             </a>
-            <a
-              href="/genres"
-              onClick={closeMenu}
-              className="text-2xl font-medium text-gray-700 hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-blue-50"
-            >
-              Genres
-            </a>
+
+            {/* Mobile Categories Dropdown */}
+            <div className="flex flex-col">
+              <button
+                onClick={() => setIsMobileCategoriesOpen(!isMobileCategoriesOpen)}
+                className="text-2xl font-medium text-gray-700 hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-blue-50 flex justify-between items-center"
+              >
+                Categories
+                <svg className={`w-6 h-6 transform transition-transform ${isMobileCategoriesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${isMobileCategoriesOpen ? 'max-h-40' : 'max-h-0'}`}>
+                <a href="/science" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">Science</a>
+                <a href="/fiction" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">Fiction</a>
+                <a href="/history" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">History</a>
+                <a href="/comics" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">Comics</a>
+                <a href="/biography" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">Biography</a>
+                <a href="/technology" onClick={closeMenu} className="block px-6 py-2 text-xl text-gray-700 hover:text-blue-600 hover:bg-blue-50">Technology</a>
+              </div>
+            </div>
+
             <a
               href="/about"
               onClick={closeMenu}
               className="text-2xl font-medium text-gray-700 hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-blue-50"
             >
               About
+            </a>
+            <a
+              href="/genres"
+              onClick={closeMenu}
+              className="text-2xl font-medium text-gray-700 hover:text-blue-600 transition-colors px-4 py-2 rounded-lg hover:bg-blue-50"
+            >
+              Genres
             </a>
             <a
               href="/contact"
@@ -155,6 +212,9 @@ const Header = () => {
         </div>
       </div>
     </header>
+
+    <hr />
+    </>
   );
 };
 

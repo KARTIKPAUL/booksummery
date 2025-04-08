@@ -6,6 +6,8 @@ export const selfHelpBooks = [
     summary:
       "A guide on building good habits, breaking bad ones, and making small changes that lead to big results over time.",
     emoji: "⚛️",
+    publishedDate:"16/10/2013",
+    genre: "Self-help book",
     fullContent: `<h2 class="text-2xl font-bold mb-4">Key Concepts</h2>
       <ul class="list-disc pl-6 mb-4">
         <li><strong>The 1% Rule:</strong> Small daily improvements compound into massive long-term results.</li>

@@ -65,7 +65,7 @@ const BookDetail = () => {
             <ul className="list-disc list-inside text-gray-700">
               <li>Published: {book.publishedDate || "Unknown"}</li>
               <li>Genre: {book.genre || "Not specified"}</li>
-              <li>ISBN: {book.isbn || "N/A"}</li>
+              {/* <li>ISBN: {book.isbn || "N/A"}</li> */}
             </ul>
           </section>
         </article>
